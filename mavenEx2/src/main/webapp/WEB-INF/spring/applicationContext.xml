@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.3.xsd">
+
+	<mvc:annotation-driven />
+
+	<bean id="viewResolver"
+		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="prefix" value="/WEB-INF/view/" />
+		<property name="suffix" value=".jsp" />
+	</bean>
+
+	<bean id="boardDaoImpl" class="com.hello.board.dao.BoardDaoImpl">
+	</bean>
+
+	<bean id="boardServiceImpl"
+		class="com.hello.board.service.BoardServiceImpl">
+		<property name="boardDao" ref="boardDaoImpl" />
+	</bean>
+
+	<bean id="boardController"
+		class="com.hello.board.web.BoardController">
+		<property name="boardService" ref="boardServiceImpl" />
+	</bean>
+
+
+</beans>
